@@ -22,8 +22,7 @@ def predict_status():
     print(j_data)
     print(j_data[0][3])
 
-    prediction = np.array2string(util.get_estimated_status(
-        temperature, pressure, humidity, visibility)[0])
+    prediction = np.array2string(util.get_estimated_status(temperature, pressure, humidity, visibility)[0])
     return jsonify(prediction)
 
 
