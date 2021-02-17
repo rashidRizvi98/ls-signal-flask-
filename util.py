@@ -3,31 +3,8 @@ import pickle
 import numpy as np
 
 __visibility = None
-__data_columns = 9
+__data_columns = None
 __model = None
-
-
-def get_estimated_status(temperature, pressure, humidity, visibility):
-
-    try:
-        visibility_index = __data_columns.index(visibility.lower())
-
-    except:
-        visibility_index = -1
-
-    x = np.zeros(9)
-    x[0] = temperature
-    x[1] = pressure
-    x[2] = humidity
-    if visibility_index >= 0:
-        x[visibility_index] = 1
-
-    return __model.predict_proba([x])[:, 1]
-
-
-def get_visibility_names():
-    return __visibility
-
 
 def load_saved_artifacts():
     print("loading artifacts...")
@@ -42,6 +19,30 @@ def load_saved_artifacts():
     with open("./artifacts/signalfailure_model2.pickle", 'rb') as f:
         __model = pickle.load(f)
     print("artifacts are loaded")
+
+
+def get_estimated_status(temperature, pressure, humidity, visibility):
+
+    try:
+        visibility_index = __data_columns.index(visibility.lower())
+
+    except:
+        visibility_index = -1
+
+    x = np.zeros(len(__data_columns))
+    x[0] = temperature
+    x[1] = pressure
+    x[2] = humidity
+    if visibility_index >= 0:
+        x[visibility_index] = 1
+
+    return __model.predict_proba([x])[:, 1]
+
+
+def get_visibility_names():
+    return __visibility
+
+
 
 
 if __name__ == '__main__':
