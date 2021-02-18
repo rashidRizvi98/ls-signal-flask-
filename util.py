@@ -6,20 +6,6 @@ __visibility = None
 __data_columns = None
 __model = None
 
-def load_saved_artifacts():
-    print("loading artifacts...")
-    global __data_columns
-    global __visibility
-
-    with open("./artifacts/columns2.json", 'r') as f:
-        __data_columns = json.load(f)["data_columns"]
-        __visibility = __data_columns[3:]
-
-    global __model
-    with open("./artifacts/signalfailure_model2.pickle", 'rb') as f:
-        __model = pickle.load(f)
-    print("artifacts are loaded")
-
 
 def get_estimated_status(temperature, pressure, humidity, visibility):
 
@@ -43,6 +29,19 @@ def get_visibility_names():
     return __visibility
 
 
+def load_saved_artifacts():
+    print("loading artifacts...")
+    global __data_columns
+    global __visibility
+
+    with open("./artifacts/columns2.json", 'r') as f:
+        __data_columns = json.load(f)["data_columns"]
+        __visibility = __data_columns[3:]
+
+    global __model
+    with open("./artifacts/signalfailure_model2.pickle", 'rb') as f:
+        __model = pickle.load(f)
+    print("artifacts are loaded")
 
 
 if __name__ == '__main__':
