@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 __visibility = None
-__data_columns = None
+__data_columns = [1,2,3,4,5,6,7,8,9]
 __model = None
 
 
