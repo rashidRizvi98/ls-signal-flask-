@@ -15,7 +15,7 @@ def get_estimated_status(temperature, pressure, humidity, visibility):
     except:
         visibility_index = -1
 
-    x = np.zeros(9)
+    x = np.zeros(len(__data_columns))
     x[0] = temperature
     x[1] = pressure
     x[2] = humidity
