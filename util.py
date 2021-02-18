@@ -3,7 +3,7 @@ import pickle
 import numpy as np
 
 __visibility = None
-__data_columns = 9
+__data_columns = 6
 __model = None
 
 
@@ -15,7 +15,7 @@ def get_estimated_status(temperature, pressure, humidity, visibility):
     except:
         visibility_index = -1
 
-    x = np.zeros(len(str(__data_columns)))
+    x = np.zeros(len(__data_columns))
     x[0] = temperature
     x[1] = pressure
     x[2] = humidity
